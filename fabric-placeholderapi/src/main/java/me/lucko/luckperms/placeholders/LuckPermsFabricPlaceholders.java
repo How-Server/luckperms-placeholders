@@ -25,9 +25,12 @@
 
 package me.lucko.luckperms.placeholders;
 
+import eu.pb4.placeholders.api.ParserContext;
 import eu.pb4.placeholders.api.PlaceholderResult;
 import eu.pb4.placeholders.api.Placeholders;
 import eu.pb4.placeholders.api.TextParserUtils;
+import eu.pb4.placeholders.api.node.TextNode;
+import eu.pb4.placeholders.api.parsers.LegacyFormattingParser;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.luckperms.api.LuckPerms;
@@ -36,6 +39,7 @@ import net.luckperms.api.cacheddata.CachedDataManager;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.query.QueryOptions;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;
@@ -54,7 +58,7 @@ public class LuckPermsFabricPlaceholders implements ModInitializer, PlaceholderP
         placeholders.forEach((s, placeholder) -> {
             // Trim the unneeded _ off the end of dynamic placeholders
             String trimmed = s.replaceAll("_$", "");
-            Placeholders.register(new Identifier("luckperms", trimmed), (ctx, arg) -> {
+            Placeholders.register(Identifier.of("luckperms", trimmed), (ctx, arg) -> {
 
                 if (ctx.hasPlayer()) {
                     ServerPlayerEntity player = ctx.player();
@@ -83,11 +87,15 @@ public class LuckPermsFabricPlaceholders implements ModInitializer, PlaceholderP
                         result = this.formatBoolean((boolean) result);
                     }
 
-                    return result == null ? PlaceholderResult.invalid() : PlaceholderResult.value(TextParserUtils.formatText(result.toString()));
+                    return result == null ? PlaceholderResult.invalid() : PlaceholderResult.value(parseText(result.toString()));
                 } else {
                     return PlaceholderResult.invalid("No player!");
                 }
             });
         });
+    }
+
+    private Text parseText(String input) {
+        return TextNode.asSingle(LegacyFormattingParser.ALL.parseNodes(TextParserUtils.formatNodes(input))).toText(ParserContext.of(), true);
     }
 }
