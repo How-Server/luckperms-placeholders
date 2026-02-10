@@ -97,27 +97,27 @@ class DurationFormatter {
 
     // Taken from https://github.com/lucko/LuckPerms/blob/master/common/src/main/resources/luckperms_en.properties
     private static final Map<String, String> TRANSLATIONS =  Map.ofEntries(
-            .put("luckperms.duration.unit.years.plural", "%s years")
-            .put("luckperms.duration.unit.years.singular", "%s year")
-            .put("luckperms.duration.unit.years.short", "%s年")
-            .put("luckperms.duration.unit.months.plural", "%s months")
-            .put("luckperms.duration.unit.months.singular", "%s month")
-            .put("luckperms.duration.unit.months.short", "%s月")
-            .put("luckperms.duration.unit.weeks.plural", "%s weeks")
-            .put("luckperms.duration.unit.weeks.singular", "%s week")
-            .put("luckperms.duration.unit.weeks.short", "%s週")
-            .put("luckperms.duration.unit.days.plural", "%s days")
-            .put("luckperms.duration.unit.days.singular", "%s day")
-            .put("luckperms.duration.unit.days.short", "%s天")
-            .put("luckperms.duration.unit.hours.plural", "%s hours")
-            .put("luckperms.duration.unit.hours.singular", "%s hour")
-            .put("luckperms.duration.unit.hours.short", "%s小時")
-            .put("luckperms.duration.unit.minutes.plural", "%s minutes")
-            .put("luckperms.duration.unit.minutes.singular", "%s minute")
-            .put("luckperms.duration.unit.minutes.short", "%s分")
-            .put("luckperms.duration.unit.seconds.plural", "%s seconds")
-            .put("luckperms.duration.unit.seconds.singular", "%s second")
-            .put("luckperms.duration.unit.seconds.short", "%s秒")
+            Map.entry("luckperms.duration.unit.years.plural", "%s years"),
+            Map.entry("luckperms.duration.unit.years.singular", "%s year"),
+            Map.entry("luckperms.duration.unit.years.short", "%s年"),
+            Map.entry("luckperms.duration.unit.months.plural", "%s months"),
+            Map.entry("luckperms.duration.unit.months.singular", "%s month"),
+            Map.entry("luckperms.duration.unit.months.short", "%s月"),
+            Map.entry("luckperms.duration.unit.weeks.plural", "%s weeks"),
+            Map.entry("luckperms.duration.unit.weeks.singular", "%s week"),
+            Map.entry("luckperms.duration.unit.weeks.short", "%s周"),
+            Map.entry("luckperms.duration.unit.days.plural", "%s days"),
+            Map.entry("luckperms.duration.unit.days.singular", "%s day"),
+            Map.entry("luckperms.duration.unit.days.short", "%s天"),
+            Map.entry("luckperms.duration.unit.hours.plural", "%s hours"),
+            Map.entry("luckperms.duration.unit.hours.singular", "%s hour"),
+            Map.entry("luckperms.duration.unit.hours.short", "%s小時"),
+            Map.entry("luckperms.duration.unit.minutes.plural", "%s minutes"),
+            Map.entry("luckperms.duration.unit.minutes.singular", "%s minute"),
+            Map.entry("luckperms.duration.unit.minutes.short", "%s分"),
+            Map.entry("luckperms.duration.unit.seconds.plural", "%s seconds"),
+            Map.entry("luckperms.duration.unit.seconds.singular", "%s second"),
+            Map.entry("luckperms.duration.unit.seconds.short", "%s秒")
     );
     
     private String formatPart(long amount, ChronoUnit unit) {
