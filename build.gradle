@@ -1,5 +1,5 @@
 plugins {
-    id 'com.gradleup.shadow' version '8.3.0'
+    id 'com.gradleup.shadow' version '8.3.8'
 }
 
 defaultTasks 'build'
@@ -9,20 +9,21 @@ subprojects {
     apply plugin: 'com.gradleup.shadow'
 
     group = 'me.lucko.luckperms.placeholders'
-    version = '5.4-SNAPSHOT'
+    version = '5.5-SNAPSHOT'
 
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    tasks.withType(JavaCompile).configureEach {
+        options.release = 11
+    }
 
     repositories {
         mavenLocal()
-        maven { url('https://hub.spigotmc.org/nexus/content/repositories/snapshots/') }
+        mavenCentral()
         maven { url('https://repo.maven.apache.org/maven2/') }
         maven { url('https://repo.lucko.me/') }
     }
 
     dependencies {
-        compileOnly 'net.luckperms:api:5.4'
+        compileOnly 'net.luckperms:api:5.5'
     }
 
     artifacts {

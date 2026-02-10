@@ -25,8 +25,6 @@
 
 package me.lucko.luckperms.placeholders;
 
-import com.google.common.collect.ImmutableMap;
-
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
@@ -98,7 +96,7 @@ class DurationFormatter {
     }
 
     // Taken from https://github.com/lucko/LuckPerms/blob/master/common/src/main/resources/luckperms_en.properties
-    private static final Map<String, String> TRANSLATIONS = ImmutableMap.<String, String>builder()
+    private static final Map<String, String> TRANSLATIONS =  Map.ofEntries(
             .put("luckperms.duration.unit.years.plural", "%s years")
             .put("luckperms.duration.unit.years.singular", "%s year")
             .put("luckperms.duration.unit.years.short", "%s年")
@@ -120,8 +118,8 @@ class DurationFormatter {
             .put("luckperms.duration.unit.seconds.plural", "%s seconds")
             .put("luckperms.duration.unit.seconds.singular", "%s second")
             .put("luckperms.duration.unit.seconds.short", "%s秒")
-            .build();
-
+    );
+    
     private String formatPart(long amount, ChronoUnit unit) {
         String format = this.concise ? "short" : amount == 1 ? "singular" : "plural";
         String translationKey = "luckperms.duration.unit." + unit.name().toLowerCase(Locale.ROOT) + "." + format;
